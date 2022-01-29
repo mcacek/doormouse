@@ -1,0 +1,19 @@
+{
+  "git": {
+    "commitMessage": "chore: release v${version}",
+    "requireCleanWorkingDir": true,
+    "tagName": "v${version}",
+    "requireBranch": "main",
+    "pushRepo": "origin"
+  },
+  "npm": {
+    "publish": false
+  },
+  "github": {
+    "release": true
+  },
+  "hooks": {
+    "after:bump": "npm run test",
+    "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
+  }
+}
