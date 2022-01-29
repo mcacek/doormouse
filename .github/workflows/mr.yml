@@ -1,5 +1,5 @@
-name: Pull Request Workflow
-on: pull_request
+name: CI Pipeline
+"on": pull_request
 jobs:
   mr-check:
     runs-on: ubuntu-latest
@@ -9,7 +9,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "17"
-          cache: "npm"
+          cache: npm
       - name: Install dependencies
         run: npm ci
       - name: Run tests
