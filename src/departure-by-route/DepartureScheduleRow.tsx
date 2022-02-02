@@ -10,7 +10,7 @@ interface DepartureScheduleRowProps {
 function DepartureScheduleRow({ departure }: DepartureScheduleRowProps) {
 	return (
 		<>
-			<tr className="transition-opacity duration-150 ease-in-out opacity-100">
+			<tr>
 				<td className="border-b border-slate-300 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
 					{departure.route_short_name}
 				</td>

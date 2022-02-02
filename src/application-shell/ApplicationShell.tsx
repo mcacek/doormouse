@@ -1,6 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import { ApplicationRoutes } from '../ApplicationRoutes';
-import { DepartureTypeSelector } from '../components';
 import { UnexpectedErrorHandler } from '../error-boundary';
 import { Hero } from './Hero';
 import { TopNavigation } from './TopNavigation';
@@ -12,10 +11,7 @@ function ApplicationShell() {
 			<Hero />
 			<ErrorBoundary FallbackComponent={UnexpectedErrorHandler} onReset={() => {}}>
 				<div className="flex justify-center">
-					<div className="w-full lg:w-1/2 p-4">
-						<h1 className="font-bold text-2xl text-slate-600 mb-4 text-center">Real-time Departures</h1>
-
-						<DepartureTypeSelector />
+					<div className="w-full mb-12 lg:w-1/2 p-4">
 						<ApplicationRoutes />
 					</div>
 				</div>

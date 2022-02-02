@@ -7,7 +7,7 @@ interface UrlAwareLinkProps extends LinkProps {
 
 function UrlAwareLink({ children, to, className, activeClass, ...props }: UrlAwareLinkProps) {
 	let resolved = useResolvedPath(to);
-	let match = useMatch({ path: resolved.pathname, end: true });
+	let match = useMatch({ path: resolved.pathname, end: false });
 
 	return (
 		<Link className={classnames(className, { [activeClass]: match })} to={to} {...props}>

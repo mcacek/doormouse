@@ -1,7 +1,13 @@
-import * as React from 'react';
+import { DepartureTypeSelector } from '../components';
 
 function DepartureByStop() {
-	return <p className="text-center">Coming soon...</p>;
+	return (
+		<>
+			<h1 className="font-bold text-2xl text-slate-600 mb-4 text-center">Real-time Departures</h1>
+			<DepartureTypeSelector />
+			<p className="text-center">Coming soon...</p>
+		</>
+	);
 }
 
 export { DepartureByStop };

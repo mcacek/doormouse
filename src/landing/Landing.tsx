@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { DepartureTypeSelector } from '../components';
+import { Navigate } from 'react-router-dom';
 
 function Landing() {
-	return <DepartureTypeSelector />;
+	return <Navigate to="/by-route" />;
 }
 
 export { Landing };

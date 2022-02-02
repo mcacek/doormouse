@@ -14,7 +14,11 @@ function DepartureScheduleLatest({ departures = [] }: DepartureScheduleLatestPro
 		<>
 			{latestDepartures?.length === 0 && (
 				<tr>
-					<td colSpan={3}>No departures at this times</td>
+					<td
+						className="border-b border-slate-300 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400 text-center"
+						colSpan={3}>
+						No departures at this times
+					</td>
 				</tr>
 			)}
 			{latestDepartures?.map((departure) => (

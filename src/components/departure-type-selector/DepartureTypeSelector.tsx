@@ -1,5 +1,3 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { UrlAwareLink } from '../UrlAwareLink';
 
 interface DepartureTypeOptions {
@@ -10,11 +8,11 @@ interface DepartureTypeOptions {
 const options: DepartureTypeOptions[] = [
 	{
 		label: 'By Route',
-		url: 'by-route',
+		url: '/by-route',
 	},
 	{
 		label: 'By Stop #',
-		url: 'by-stop',
+		url: '/by-stop',
 	},
 ];
 

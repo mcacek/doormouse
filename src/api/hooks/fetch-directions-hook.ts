@@ -12,7 +12,7 @@ function useFetchDirections() {
 		(routeId: string) => {
 			return apiClient.get(`directions/${routeId}`).json<Promise<DirectonsResponse>>();
 		},
-		[useApi]
+		[apiClient]
 	);
 
 	return fetchDirections;

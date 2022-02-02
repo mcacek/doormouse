@@ -7,8 +7,8 @@ import { Landing } from './landing';
 function ApplicationRoutes() {
 	return (
 		<Routes>
-			<Route path="/" element={<DepartureByRoute />} />
-			<Route path="by-route" element={<DepartureByRoute />} />
+			<Route path="/" element={<Landing />} />
+			<Route path="by-route/*" element={<DepartureByRoute />} />
 			<Route path="by-stop" element={<DepartureByStop />} />
 		</Routes>
 	);

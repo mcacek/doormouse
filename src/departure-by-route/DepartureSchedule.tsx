@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useErrorHandler } from 'react-error-boundary';
-import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
+import { FiLoader, FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import { useQuery } from 'react-query';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { components, paths } from '../../nextrip.types';
 import { useFetchSchedule } from '../api';
 import { DepartureScheduleExtended } from './DepartureScheduleExtended';
@@ -21,6 +22,8 @@ function DepartureSchedule({ routeId, directionId, placeCode }: ScheduleProps) {
 	const [isExpanded, setIsExpanded] = React.useState(false);
 	const fetchSchedule = useFetchSchedule();
 	const handleError = useErrorHandler();
+	const navigate = useNavigate();
+	const location = useLocation();
 
 	// Fetch departure schedule and poll every 10 seconds for updates
 	const { isLoading, error, data } = useQuery<ScheduleResponse, Error>(
@@ -28,7 +31,7 @@ function DepartureSchedule({ routeId, directionId, placeCode }: ScheduleProps) {
 		async () => {
 			return fetchSchedule(routeId, directionId, placeCode);
 		},
-		{ refetchInterval: 10_000 }
+		{ refetchInterval: Number(process.env.REACT_APP_API_DEPARTURE_POLLING) }
 	);
 
 	if (error) {
@@ -39,17 +42,25 @@ function DepartureSchedule({ routeId, directionId, placeCode }: ScheduleProps) {
 		setIsExpanded((current) => !current);
 	};
 
-	/**
-	 * 1. Display the nearest departures
-	 *  a. "No departures at this time" if no departures available
-	 *  b. First 3 if >= 3
-	 * 2. Display departure expander
-	 *  a. No expander if <=3 departures
-	 *  b. Show expander if >=3 departures
-	 */
+	React.useEffect(() => {
+		const targetPath = `/by-route/${routeId}/${directionId}/${placeCode}`;
+		if (location.pathname !== targetPath) {
+			navigate(targetPath, { replace: false });
+		}
+		// Disable eslint error to prevent routinng loop. This should be resolved by restructuring routing.
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [routeId, directionId, placeCode]);
 
 	if (isLoading) {
-		return <p>Loading</p>;
+		return (
+			<div className="text-center p-4">
+				<FiLoader
+					className="animate-ping text-blue-700 inline-block"
+					size={30}
+					data-testid="departureScheduleSpinner"
+				/>
+			</div>
+		);
 	}
 
 	const departureCount = data?.departures?.length ?? 0;
@@ -57,14 +68,18 @@ function DepartureSchedule({ routeId, directionId, placeCode }: ScheduleProps) {
 
 	return (
 		<>
-			<div className="bg-gray-100">
+			<div className="bg-gray-100" data-testid="departureSchedules">
 				<div className="relative rounded-xl overflow-auto">
 					<div className="shadow-sm overflow-hidden">
 						<div className="flex pl-8 py-4">
-							<div className="flex-grow w-1/2 font-bold text-slate-600 text-xl">{data?.stops?.[0].description}</div>
-							<div className=" pr-8 text-right">Stop #: {data?.stops?.[0].stop_id}</div>
+							<div className="flex-grow w-1/2 font-bold text-slate-600 text-xl" data-testid="stopDescription">
+								{data?.stops?.[0].description}
+							</div>
+							<div className=" pr-8 text-right" data-testid="stopNumber">
+								Stop #: {data?.stops?.[0].stop_id}
+							</div>
 						</div>
-						<table className="border-collapse table-auto w-full text-sm">
+						<table className="border-collapse table-auto w-full text-sm" data-testid="departuresTable">
 							<thead>
 								<tr className="bg-yellow-400">
 									<th className="border-b dark:border-slate-600 p-4 pl-8 pb-3 text-slate-700 dark:text-slate-200 text-left uppercase font-bold">
@@ -86,7 +101,7 @@ function DepartureSchedule({ routeId, directionId, placeCode }: ScheduleProps) {
 
 						{departureCount > 3 && (
 							<div>
-								<button onClick={toggleExpanded} className="px-8 py-4">
+								<button type="button" onClick={toggleExpanded} className="px-8 py-4" data-testid="expandDepartures">
 									<ExpandIcon className="text-blue-500 inline-block" /> Departures
 								</button>
 							</div>

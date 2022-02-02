@@ -13,13 +13,16 @@ type StopsResponse =
 	paths['/nextripv2/stops/{route_id}/{direction_id}']['get']['responses']['200']['content']['application/json'];
 
 interface SelectStopProps {
+	defaultValue?: string | null;
 	routeId: string;
 	directionId: number;
 	renderNext: (stopId: string) => React.ReactNode;
 }
 
-function SelectStop({ routeId, directionId, renderNext }: SelectStopProps) {
+function SelectStop({ defaultValue, routeId, directionId, renderNext }: SelectStopProps) {
+	const [options, setOptions] = React.useState<StopOption[]>([]);
 	const [selection, setSelection] = React.useState<StopOption | null>();
+	const initialLoad = React.useRef(true);
 	const handleError = useErrorHandler();
 	const fetchStops = useFetchStops();
 	const { isLoading, error, data } = useQuery<StopsResponse, Error>(['directions', routeId, directionId], async () => {
@@ -34,30 +37,51 @@ function SelectStop({ routeId, directionId, renderNext }: SelectStopProps) {
 		setSelection(option);
 	}, []);
 
+	// reset selection when directionId changes
 	React.useEffect(() => {
 		setSelection(null);
 	}, [directionId]);
 
-	let stopOptions: StopOption[] = [];
+	React.useEffect(() => {
+		if (!isLoading) {
+			const stopOptions = data!.map((stop) => {
+				return {
+					value: stop.place_code as string,
+					label: stop.description as string,
+				};
+			});
 
-	if (!isLoading) {
-		stopOptions = data!.map((stop) => {
-			return {
-				value: stop.place_code as string,
-				label: stop.description as string,
-			};
-		});
-	}
+			setOptions(stopOptions);
+		}
+	}, [data, isLoading]);
+
+	// Track options and select value for default option when options are set. This should only occur on initial load.
+	React.useEffect(() => {
+		if (options.length > 0 && initialLoad.current) {
+			const defaultSelection = options.find((option) => option.value === defaultValue);
+			setSelection(defaultSelection);
+			initialLoad.current = false;
+		}
+	}, [options, defaultValue]);
+
+	React.useEffect(() => {
+		initialLoad.current = true;
+	}, [defaultValue]);
 
 	return (
 		<>
 			<div className="mb-2">
+				<label htmlFor="stopId" className="hidden">
+					Stop
+				</label>
 				<ReactSelect
-					name="routeId"
+					inputId="stopId"
+					name="stopId"
 					placeholder="Select stop"
 					value={selection}
-					options={stopOptions}
+					options={options}
 					onChange={selectStop}
+					isLoading={isLoading}
 				/>
 			</div>
 			{selection && renderNext(selection.value)}
