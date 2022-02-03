@@ -14,26 +14,37 @@ problem.
 
 ## Development
 
+Install application dependencies.
+
+```bash
+# Node v17.3.1 was used during development but any version v14.x and beyond should be fine.
+npm install
+```
+
+Start development server.
+
 ```bash
 npm run dev
 ```
 
-## Code Quality
-
-```bash
-npm run test
-```
-
 ## Release Process
 
-The release process is tag based and is triggered vi a developer triggered
-process managed by `release-it`. Running the command below will present prompts
-to answer some version and release documentation questions and upon completion
-will tag a release and generate the appropriate documentation. Nothing will
-actually be published by this process as this application is not a library. The
-deployment process will be triggered upon successful tag creation and pushing to
-upstream.
+The build process was originally intended to deploy to GH Pages but due to the
+project time limitation this has been removed and the is no formal deployment
+process. This application is assembled using `create-react-app` and can be built
+from the command line, ideally during an automated build process. There is a
+small amount of external configuration required and is provied by a `.env` file
+in the root of the project. Reasonable defaults exist in the `.env.schema` file
+in the root of the project. Simply copy the values in this file intoto a new
+file named `.env` in the root of the project. An automated build system would
+likely expose these values as environmental variables during the build process.
 
 ```bash
-npm run release
+npm run build
 ```
+
+Upon successful build the contents of `/build` can be manually copied to a web
+server or ideally pushed to a server in a more automated fashion. A common
+approach is to push the files to a uniquely named directory in a cloud storage
+system (ie. S3) and updating an edge delivery system (Cloudfront) with the new
+directory path as the new entry point.
