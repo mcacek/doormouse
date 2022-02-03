@@ -24,7 +24,7 @@ npm install
 Start development server.
 
 ```bash
-npm run dev
+npm start
 ```
 
 ## Release Process
