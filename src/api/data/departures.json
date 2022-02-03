@@ -1,0 +1,117 @@
+{
+	"stops": [
+		{
+			"stop_id": 51419,
+			"latitude": 44.88077,
+			"longitude": -93.205,
+			"description": "Terminal 1 Lindbergh Station"
+		}
+	],
+	"alerts": [],
+	"departures": [
+		{
+			"actual": false,
+			"trip_id": "20247427-DEC21-RAIL-Weekday-01",
+			"stop_id": 51419,
+			"departure_text": "12:17",
+			"departure_time": 1643869020,
+			"description": "Airport Shuttle",
+			"route_id": "906",
+			"route_short_name": "AIRPRT",
+			"direction_id": 1,
+			"direction_text": "SB",
+			"schedule_relationship": "Scheduled"
+		},
+		{
+			"actual": false,
+			"trip_id": "20247425-DEC21-RAIL-Weekday-01",
+			"stop_id": 51419,
+			"departure_text": "12:32",
+			"departure_time": 1643869920,
+			"description": "Airport Shuttle",
+			"route_id": "906",
+			"route_short_name": "AIRPRT",
+			"direction_id": 1,
+			"direction_text": "SB",
+			"schedule_relationship": "Scheduled"
+		},
+		{
+			"actual": false,
+			"trip_id": "20247426-DEC21-RAIL-Weekday-01",
+			"stop_id": 51419,
+			"departure_text": "12:47",
+			"departure_time": 1643870820,
+			"description": "Airport Shuttle",
+			"route_id": "906",
+			"route_short_name": "AIRPRT",
+			"direction_id": 1,
+			"direction_text": "SB",
+			"schedule_relationship": "Scheduled"
+		},
+		{
+			"actual": false,
+			"trip_id": "20247429-DEC21-RAIL-Weekday-01",
+			"stop_id": 51419,
+			"departure_text": "1:02",
+			"departure_time": 1643871720,
+			"description": "Airport Shuttle",
+			"route_id": "906",
+			"route_short_name": "AIRPRT",
+			"direction_id": 1,
+			"direction_text": "SB",
+			"schedule_relationship": "Scheduled"
+		},
+		{
+			"actual": false,
+			"trip_id": "20247433-DEC21-RAIL-Weekday-01",
+			"stop_id": 51419,
+			"departure_text": "1:17",
+			"departure_time": 1643872620,
+			"description": "Airport Shuttle",
+			"route_id": "906",
+			"route_short_name": "AIRPRT",
+			"direction_id": 1,
+			"direction_text": "SB",
+			"schedule_relationship": "Scheduled"
+		},
+		{
+			"actual": false,
+			"trip_id": "20247434-DEC21-RAIL-Weekday-01",
+			"stop_id": 51419,
+			"departure_text": "1:32",
+			"departure_time": 1643873520,
+			"description": "Airport Shuttle",
+			"route_id": "906",
+			"route_short_name": "AIRPRT",
+			"direction_id": 1,
+			"direction_text": "SB",
+			"schedule_relationship": "Scheduled"
+		},
+		{
+			"actual": false,
+			"trip_id": "20247431-DEC21-RAIL-Weekday-01",
+			"stop_id": 51419,
+			"departure_text": "1:47",
+			"departure_time": 1643874420,
+			"description": "Airport Shuttle",
+			"route_id": "906",
+			"route_short_name": "AIRPRT",
+			"direction_id": 1,
+			"direction_text": "SB",
+			"schedule_relationship": "Scheduled"
+		},
+		{
+			"actual": false,
+			"trip_id": "20247439-DEC21-RAIL-Weekday-01",
+			"stop_id": 51419,
+			"departure_text": "2:02",
+			"departure_time": 1643875320,
+			"description": "Airport Shuttle",
+			"route_id": "906",
+			"route_short_name": "AIRPRT",
+			"direction_id": 1,
+			"direction_text": "SB",
+			"schedule_relationship": "Scheduled"
+		}
+	]
+}
