@@ -16,15 +16,15 @@
 - Users will access the application on a variety of browsers
 - Users will access the application with a variety of screen sizes
 - Users do not have a common set of accessibility requirements
-- Users may not all user the same language
 - The target user audience are using latest browsers
+- API has a reasonable CORS policy
+- There is a reasonable API request limit that will not present issues
+- There is no API authentication mechanism in place
+- Users will want to share direct links to routes
 
 ---
 
 ## Documentation
 
-- [Accessibility](./docs/accessibility.md)
-- [Build](./docs/build.md)
+- [Build](./docs/build-release.md)
 - [Code Quality](./docs/code-quality.md)
-- [Dependencies](./docs/dependencies.md)
-- [Testing](./docs/testing.md)
