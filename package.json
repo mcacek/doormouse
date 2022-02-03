@@ -32,7 +32,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "release": "release-it",
     "generate-types": "npx openapi-typescript https://svc.metrotransit.org/swagger/docs/v2/nextrip --output ./nextrip.types.ts"
   },
   "eslintConfig": {
@@ -60,7 +59,6 @@
     "postcss": "8.4.5",
     "prettier": "2.5.1",
     "react-select-event": "^5.3.0",
-    "release-it": "14.12.4",
     "tailwindcss": "3.0.18"
   },
   "jest": {
